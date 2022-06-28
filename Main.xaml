@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="514.4,2721.6" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="892.8,2721.6" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -81,7 +81,6 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap:VirtualizedContainerService.HintSize="524.8,2656.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
@@ -100,7 +99,7 @@
         </OutArgument>
       </ui:InputDialog.Result>
     </ui:InputDialog>
-    <If sap:VirtualizedContainerService.HintSize="483.2,395.2" sap2010:WorkflowViewState.IdRef="If_1">
+    <If DisplayName="If Car Brands" sap:VirtualizedContainerService.HintSize="483.2,395.2" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">selectValue.Equals("Car Brands")</mca:CSharpValue>
@@ -130,7 +129,7 @@
         </Sequence>
       </If.Else>
     </If>
-    <If sap:VirtualizedContainerService.HintSize="483.2,395.2" sap2010:WorkflowViewState.IdRef="If_2">
+    <If DisplayName="If Car Service Provider" sap:VirtualizedContainerService.HintSize="483.2,395.2" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">selectValue.Equals("Car Service Provider")</mca:CSharpValue>
@@ -232,7 +231,7 @@
         </Sequence>
       </If.Else>
     </If>
-    <If DisplayName="If University" sap:VirtualizedContainerService.HintSize="483.2,395.2" sap2010:WorkflowViewState.IdRef="If_5">
+    <If DisplayName="If Inistitutes" sap:VirtualizedContainerService.HintSize="483.2,395.2" sap2010:WorkflowViewState.IdRef="If_5">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">selectValue.Equals("Institutes")</mca:CSharpValue>
@@ -268,7 +267,7 @@
         </Sequence>
       </If.Else>
     </If>
-    <If DisplayName="If University" sap:VirtualizedContainerService.HintSize="483.2,395.2" sap2010:WorkflowViewState.IdRef="If_6">
+    <If DisplayName="If ADVA Data Unification" sap:VirtualizedContainerService.HintSize="483.2,395.2" sap2010:WorkflowViewState.IdRef="If_6">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">selectValue.Equals("ADVA Data Unification")</mca:CSharpValue>
