@@ -1,15 +1,16 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="CreateCarServiceProviderBranches" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="CreateCarServiceProviderBranches" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="Id" Type="InArgument(s:Guid)" />
-    <x:Property Name="Branches" Type="InArgument(sd:DataTable)" />
     <x:Property Name="ProviderName" Type="InArgument(x:String)" />
     <x:Property Name="Lookups" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="ProviderId" Type="InArgument(s:Guid)" />
+    <x:Property Name="BranchesSheetData" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="CreatedBranchesDictionary" Type="OutArgument(scg:Dictionary(x:Object, x:Object))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>824,1087.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>612,610.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <sco:Collection x:TypeArguments="x:String">
+    <scg:List x:TypeArguments="x:String" Capacity="62">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -41,10 +42,11 @@
       <x:String>System.Activities.DynamicUpdate</x:String>
       <x:String>System.Linq.Expressions</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
-    </sco:Collection>
+      <x:String>Microsoft.Activities.Extensions.Statements</x:String>
+    </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <sco:Collection x:TypeArguments="AssemblyReference">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="66">
       <AssemblyReference>Microsoft.CSharp</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
       <AssemblyReference>System.Core</AssemblyReference>
@@ -77,14 +79,20 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
-    </sco:Collection>
+    </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreateCarServiceProviderBranches" sap:VirtualizedContainerService.HintSize="600,1022.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="WeddingProviderBranches" sap:VirtualizedContainerService.HintSize="304,245.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="filteredBranches">
         <Variable.Default>
-          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_40">Branches.AsEnumerable().Where(x =&gt; x.ItemArray[0].ToString().Replace(" ", "").Equals(ProviderName.Replace(" ", ""))).CopyToDataTable()</mca:CSharpValue>
+          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_42">BranchesSheetData.AsEnumerable().Where(x =&gt; x.ItemArray[1].ToString().Replace(" ", "").Equals(ProviderName.Replace(" ", ""))).CopyToDataTable()</mca:CSharpValue>
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="scg:Dictionary(x:Object, x:Object)" Name="createdBranchesDictionary">
+        <Variable.Default>
+          <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:Object, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_74">new Dictionary&lt;object, object&gt;()</mca:CSharpValue>
         </Variable.Default>
       </Variable>
     </Sequence.Variables>
@@ -93,105 +101,110 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="558.4,929.6" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="472.8,823.2" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="branch" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="524.8,808.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="439.2,702.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
             <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="areaId" />
+              <Variable x:TypeArguments="x:Double" Name="areaId" />
               <Variable x:TypeArguments="x:String" Name="selectedArea" />
               <Variable x:TypeArguments="x:String" Name="location" />
+              <Variable x:TypeArguments="s:Guid" Name="id" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign sap:VirtualizedContainerService.HintSize="397.6,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Double">
+                  <mca:CSharpReference x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="CSharpReference`1_8">areaId</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Double">
+                  <mca:CSharpValue x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="CSharpValue`1_57">Lookups.AsEnumerable().Where(x =&gt;x.Field&lt;string&gt;("Area Name") != null &amp;&amp; x.Field&lt;string&gt;("Area Name").Equals(branch.ItemArray[2].ToString())).Select(x =&gt; x.Field&lt;double&gt;("Area Id")).FirstOrDefault()</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="397.6,60" sap2010:WorkflowViewState.IdRef="Assign_8">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">
-                  <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">selectedArea</mca:CSharpReference>
+                  <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_9">location</mca:CSharpReference>
                 </OutArgument>
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="x:String">
-                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_25">string.IsNullOrWhiteSpace(branch.ItemArray[3].ToString()) ? string.Empty : branch.ItemArray[3].ToString().Split(',').Where(x =&gt; !string.IsNullOrWhiteSpace(x)).FirstOrDefault()</mca:CSharpValue>
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_58">string.IsNullOrWhiteSpace(branch.ItemArray[5].ToString()) ? string.Empty : branch.ItemArray[5].ToString()</mca:CSharpValue>
                 </InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign sap:VirtualizedContainerService.HintSize="397.6,60" sap2010:WorkflowViewState.IdRef="Assign_10">
               <Assign.To>
-                <OutArgument x:TypeArguments="x:String">
-                  <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">areaId</mca:CSharpReference>
+                <OutArgument x:TypeArguments="s:Guid">
+                  <mca:CSharpReference x:TypeArguments="s:Guid" sap2010:WorkflowViewState.IdRef="CSharpReference`1_13">id</mca:CSharpReference>
                 </OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">
-                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_29">string.IsNullOrWhiteSpace(selectedArea) ? string.Empty : Lookups.AsEnumerable().Where(x =&gt; x.ItemArray[0].ToString().Replace(" ", "").Contains(selectedArea.Replace(" ", ""))).FirstOrDefault().ItemArray[5].ToString()</mca:CSharpValue>
+                <InArgument x:TypeArguments="s:Guid">
+                  <mca:CSharpValue x:TypeArguments="s:Guid" sap2010:WorkflowViewState.IdRef="CSharpValue`1_63">Guid.NewGuid()</mca:CSharpValue>
                 </InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_4">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">
-                  <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">location</mca:CSharpReference>
-                </OutArgument>
-              </Assign.To>
-              <Assign.Value>
+            <ui:AppendLine DisplayName="Append Line" FileName="Output\\Wedding\\Wedding_Providers_SqlScript.txt" sap:VirtualizedContainerService.HintSize="397.6,134.4" sap2010:WorkflowViewState.IdRef="AppendLine_7" UseDefaultEncoding="False">
+              <ui:AppendLine.Text>
                 <InArgument x:TypeArguments="x:String">
-                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_33">string.IsNullOrWhiteSpace(branch.ItemArray[4].ToString()) ? string.Empty : branch.ItemArray[4].ToString()</mca:CSharpValue>
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_59">"INSERT INTO `weddingproviderbranches` (`Id`, `CreationTime`, `IsDeleted`, `NameAr`, `NameEn`, `WeddingProviderId`, `AreaId`, `url`) VALUES " + "('" + Guid.NewGuid() + "', '" +DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")+ "', '" +0+ "', '" +branch.ItemArray[4]+ "', '" +branch.ItemArray[3]+ "','"+ProviderId+ "','" +areaId+ "','" +location+ "');"</mca:CSharpValue>
                 </InArgument>
-              </Assign.Value>
-            </Assign>
-            <If sap:VirtualizedContainerService.HintSize="483.2,416" sap2010:WorkflowViewState.IdRef="If_2">
-              <If.Condition>
-                <InArgument x:TypeArguments="x:Boolean">
-                  <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_22">branch != null</mca:CSharpValue>
+              </ui:AppendLine.Text>
+            </ui:AppendLine>
+            <maes:AddToDictionary x:TypeArguments="x:Object, x:Object" DisplayName="Add to dictionary" sap:VirtualizedContainerService.HintSize="397.6,135.2" sap2010:WorkflowViewState.IdRef="AddToDictionary`2_1">
+              <maes:AddToDictionary.Dictionary>
+                <InArgument x:TypeArguments="scg:IDictionary(x:Object, x:Object)">
+                  <mca:CSharpValue x:TypeArguments="scg:IDictionary(x:Object, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_66">createdBranchesDictionary</mca:CSharpValue>
                 </InArgument>
-              </If.Condition>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="375.2,227.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:AppendLine DisplayName="Append Line" FileName="Output\\CarService_Providers_SqlScript.txt" sap:VirtualizedContainerService.HintSize="333.6,134.4" sap2010:WorkflowViewState.IdRef="AppendLine_4" UseDefaultEncoding="False">
-                    <ui:AppendLine.Text>
-                      <InArgument x:TypeArguments="x:String">
-                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_39">"INSERT INTO `carserviceproviderbranch` (`Id`, `CreationTime`, `IsDeleted`, `NameAr`, `NameEn`, `CarServiceProviderId`, `AreaId`, `url`) VALUES " + "('" + Guid.NewGuid() + "', '" +DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")+ "', '" +0+ "', '" +branch.ItemArray[1]+ "', '" +branch.ItemArray[2]+ "','"+Id+ "','" +areaId+ "','" +location+ "');"</mca:CSharpValue>
-                      </InArgument>
-                    </ui:AppendLine.Text>
-                  </ui:AppendLine>
-                </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </If.Else>
-            </If>
+              </maes:AddToDictionary.Dictionary>
+              <maes:AddToDictionary.Key>
+                <InArgument x:TypeArguments="x:Object">
+                  <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_70">branch.ItemArray[0].ToString()</mca:CSharpValue>
+                </InArgument>
+              </maes:AddToDictionary.Key>
+              <maes:AddToDictionary.Value>
+                <InArgument x:TypeArguments="x:Object">
+                  <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_71">id</mca:CSharpValue>
+                </InArgument>
+              </maes:AddToDictionary.Value>
+            </maes:AddToDictionary>
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
       <ui:ForEachRow.DataTable>
         <InArgument x:TypeArguments="sd:DataTable">
-          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">filteredBranches</mca:CSharpValue>
+          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_56">filteredBranches</mca:CSharpValue>
         </InArgument>
       </ui:ForEachRow.DataTable>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
+    <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:Dictionary(x:Object, x:Object)">
+          <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:Object, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_17">CreatedBranchesDictionary</mca:CSharpReference>
+        </OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:Dictionary(x:Object, x:Object)">
+          <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:Object, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_73">createdBranchesDictionary</mca:CSharpValue>
+        </InArgument>
+      </Assign.Value>
+    </Assign>
   </Sequence>
 </Activity>

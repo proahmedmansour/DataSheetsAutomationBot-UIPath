@@ -4,6 +4,7 @@
   "main": "Main.xaml",
   "dependencies": {
     "LanguageTranslator": "[1.0.6]",
+    "Microsoft.Activities.Extensions": "[2.0.6.9]",
     "System.Globalization": "[4.3.0]",
     "UiPath.Excel.Activities": "[2.11.4]",
     "UiPath.Mail.Activities": "[1.12.2]",
