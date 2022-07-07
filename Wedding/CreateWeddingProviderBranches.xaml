@@ -7,7 +7,7 @@
     <x:Property Name="CreatedBranchesDictionary" Type="OutArgument(scg:Dictionary(x:Object, x:Object))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>612,610.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>824,1080.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="62">
@@ -83,7 +83,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="WeddingProviderBranches" sap:VirtualizedContainerService.HintSize="304,245.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="WeddingProviderBranches" sap:VirtualizedContainerService.HintSize="514.4,1016" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="filteredBranches">
         <Variable.Default>
@@ -158,7 +158,7 @@
             <ui:AppendLine DisplayName="Append Line" FileName="Output\\Wedding\\Wedding_Providers_SqlScript.txt" sap:VirtualizedContainerService.HintSize="397.6,134.4" sap2010:WorkflowViewState.IdRef="AppendLine_7" UseDefaultEncoding="False">
               <ui:AppendLine.Text>
                 <InArgument x:TypeArguments="x:String">
-                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_59">"INSERT INTO `weddingproviderbranches` (`Id`, `CreationTime`, `IsDeleted`, `NameAr`, `NameEn`, `WeddingProviderId`, `AreaId`, `url`) VALUES " + "('" + Guid.NewGuid() + "', '" +DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")+ "', '" +0+ "', '" +branch.ItemArray[4]+ "', '" +branch.ItemArray[3]+ "','"+ProviderId+ "','" +areaId+ "','" +location+ "');"</mca:CSharpValue>
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_75">"INSERT INTO `weddingproviderbranches` (`Id`, `CreationTime`, `IsDeleted`, `NameAr`, `NameEn`, `WeddingProviderId`, `AreaId`, `url`) VALUES " + "('" + id + "', '" +DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")+ "', '" +0+ "', '" +branch.ItemArray[4]+ "', '" +branch.ItemArray[3]+ "','"+ProviderId+ "','" +areaId+ "','" +location+ "');"</mca:CSharpValue>
                 </InArgument>
               </ui:AppendLine.Text>
             </ui:AppendLine>
@@ -189,12 +189,12 @@
       </ui:ForEachRow.DataTable>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+    <Assign sap:VirtualizedContainerService.HintSize="472.8,60" sap2010:WorkflowViewState.IdRef="Assign_12">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:Dictionary(x:Object, x:Object)">
           <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:Object, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_17">CreatedBranchesDictionary</mca:CSharpReference>
