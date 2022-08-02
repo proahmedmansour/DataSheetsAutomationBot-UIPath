@@ -4,7 +4,7 @@
     <x:Property Name="Id" Type="InArgument(s:Guid)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>860,1796</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>760.8,1069.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -73,7 +73,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreateContactsScript" sap:VirtualizedContainerService.HintSize="552,1731.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CreateContactsScript" sap:VirtualizedContainerService.HintSize="552,1004.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="facebook">
         <Variable.Default>
@@ -92,7 +92,7 @@
       </Variable>
       <Variable x:TypeArguments="s:String[]" Name="mobiles">
         <Variable.Default>
-          <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">Row.ItemArray[9].ToString().Replace(" ", "").Replace("-", "").Split('/').Where(x =&gt; !string.IsNullOrWhiteSpace(x)).Distinct().ToArray()</mca:CSharpValue>
+          <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_21">Row.ItemArray[9].ToString().Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "").Split('|').Where(x =&gt; !string.IsNullOrWhiteSpace(x)).Distinct().ToArray()</mca:CSharpValue>
         </Variable.Default>
       </Variable>
     </Sequence.Variables>
@@ -139,7 +139,7 @@
         </Sequence>
       </If.Else>
     </If>
-    <If DisplayName="If instagram" sap:VirtualizedContainerService.HintSize="510.4,416" sap2010:WorkflowViewState.IdRef="If_2">
+    <If DisplayName="If instagram" sap:VirtualizedContainerService.HintSize="510.4,52.8" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">!string.IsNullOrWhiteSpace(instagram)</mca:CSharpValue>
@@ -147,7 +147,7 @@
       </If.Condition>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -177,7 +177,7 @@
         </Sequence>
       </If.Else>
     </If>
-    <If DisplayName="If website" sap:VirtualizedContainerService.HintSize="510.4,416" sap2010:WorkflowViewState.IdRef="If_3">
+    <If DisplayName="If website" sap:VirtualizedContainerService.HintSize="510.4,52.8" sap2010:WorkflowViewState.IdRef="If_3">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_15">!string.IsNullOrWhiteSpace(website)</mca:CSharpValue>
@@ -185,7 +185,7 @@
       </If.Condition>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>

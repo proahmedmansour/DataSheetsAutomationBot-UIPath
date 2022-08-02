@@ -1,0 +1,1 @@
+﻿INSERT INTO `carserviceproviders` (`Id`, `CreationTime`, `IsDeleted`, `NameAr`, `NameEn`, `LogoUrl`, `About`, `AboutAr`) VALUES ('760a0460-a755-4271-97e2-930db089de21', '2022-02-17T18:14:30', '0', 'السعدي لتجديد واصلاح السيارات', 'El Saadi for Auto Maintenance & repair ', 'uploads/images/carserviceproviders/de12432f-0e0f-45d5-b2af-6e6a9b99f87a.jpg','ميكانيكا- سمكرة- دوكو','');

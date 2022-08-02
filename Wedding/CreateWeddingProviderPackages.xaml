@@ -121,7 +121,7 @@
               </InArgument>
             </Assign.Value>
           </Assign>
-          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="262.4,52.8" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="508.8,1656" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
             <ui:ForEachRow.Body>
               <ActivityAction x:TypeArguments="sd:DataRow">
                 <ActivityAction.Argument>
@@ -248,7 +248,7 @@
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
                             <InArgument x:TypeArguments="s:String[]">
-                              <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_103">package.ItemArray[7].ToString().Split('|').Where(x =&gt; !string.IsNullOrWhiteSpace(x)).Select(x =&gt; x.Trim()).ToArray()</mca:CSharpValue>
+                              <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_116">package.ItemArray[7].ToString().Split('|').Where(x =&gt; !string.IsNullOrWhiteSpace(x)).Select(x =&gt; x.Trim().Replace("-", "")).ToArray()</mca:CSharpValue>
                             </InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
@@ -338,6 +338,12 @@
                         </ui:AssignOperation>
                       </scg:List>
                     </ui:MultipleAssign.AssignOperations>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </ui:MultipleAssign>
                   <ui:AppendLine DisplayName="Append Line" FileName="Output\\Wedding\\Wedding_Providers_SqlScript.txt" sap:VirtualizedContainerService.HintSize="433.6,134.4" sap2010:WorkflowViewState.IdRef="AppendLine_8" UseDefaultEncoding="False">
                     <ui:AppendLine.Text>
@@ -345,6 +351,12 @@
                         <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_111" xml:space="preserve">"INSERT INTO `weddingpackages` (`Id`, `CreationTime`, `IsDeleted`, `Details`, `DetailsAr`, `SubtitleEn`, `SubtitleAr`, `Price`, `WeddingProviderCategoryId`, `WeddingProviderId`, `AboutAr`, `AboutEn`, `TitleAr`, `TitleEn`"+ (!string.IsNullOrWhiteSpace(createdBranchId) ? ", `WeddingProviderBranchId`" : "")+") VALUES " + "('" + id + "', '" +DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")+ "', '" +0+ "','" +detailsEn+ "', '" +detailsAr+ "','" +subTitleEn+ "', '" +subTitleAr+ "', '" +price+ "', '" +createdProviderCateoriesId+ "', '" +ProviderId+ "',  '" +aboutAr+ "', '" +aboutEn+ "','"+packageNameAr+ "','" +packageNameEn+ "'"+ (!string.IsNullOrWhiteSpace(createdBranchId) ? ",'"+ createdBranchId +"'" : "")+");"</mca:CSharpValue>
                       </InArgument>
                     </ui:AppendLine.Text>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </ui:AppendLine>
                   <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="433.6,552" sap2010:WorkflowViewState.IdRef="ForEach`1_2">
                     <ui:ForEach.Body>
@@ -369,7 +381,7 @@
                             </Assign.To>
                             <Assign.Value>
                               <InArgument x:TypeArguments="x:String">
-                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_112">"uploads/images/weddingproviders/packages" + image.ToString()</mca:CSharpValue>
+                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_117">"uploads/images/weddingproviders/" + image.ToString()</mca:CSharpValue>
                               </InArgument>
                             </Assign.Value>
                           </Assign>
@@ -400,6 +412,12 @@
                         <mca:CSharpValue x:TypeArguments="sc:IEnumerable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_115">images</mca:CSharpValue>
                       </InArgument>
                     </ui:ForEach.Values>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </ui:ForEach>
                 </Sequence>
               </ActivityAction>

@@ -189,7 +189,7 @@
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
               <InArgument x:TypeArguments="s:String[]">
-                <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_64">Row.ItemArray[5].ToString().Split('|').ToArray().Where(x=&gt; !string.IsNullOrWhiteSpace(x)).Select(x =&gt; x.Trim()).ToArray()</mca:CSharpValue>
+                <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_74">Row.ItemArray[5].ToString().Split('|').ToArray().Where(x=&gt; !string.IsNullOrWhiteSpace(x)).Select(x =&gt; x.Trim().Replace("-", "")).ToArray()</mca:CSharpValue>
               </InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
